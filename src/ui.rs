@@ -121,6 +121,21 @@ impl FolderSizeApp {
         let y = (sh - h) / 2;
         app.window.set_position(x, y);
 
+        // Set embedded application icon on window titlebar
+        unsafe {
+            use winapi::um::libloaderapi::GetModuleHandleW;
+            use winapi::um::winuser::{LoadIconW, SendMessageW, ICON_BIG, ICON_SMALL, MAKEINTRESOURCEW, WM_SETICON};
+
+            let h_instance = GetModuleHandleW(std::ptr::null());
+            let h_icon = LoadIconW(h_instance, MAKEINTRESOURCEW(1));
+            if !h_icon.is_null() {
+                if let Some(hwnd) = app.window.handle.hwnd() {
+                    SendMessageW(hwnd, WM_SETICON, ICON_BIG as _, h_icon as _);
+                    SendMessageW(hwnd, WM_SETICON, ICON_SMALL as _, h_icon as _);
+                }
+            }
+        }
+
         // Initially hide result labels
         app.size_label.set_visible(false);
         app.details_label.set_visible(false);
