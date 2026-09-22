@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run tests
+        run: cargo test --release --verbose
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Package Release
+        shell: pwsh
+        run: |
+          $Version = "${{ github.ref_name }}"
+          $DistDir = "dist\BetterFolderSize-$Version"
+          New-Item -ItemType Directory -Path $DistDir -Force | Out-Null
+          
+          Copy-Item "target\release\better-folder-size.exe" -Destination "$DistDir\BetterFolderSize.exe"
+          Copy-Item "installer\install.ps1" -Destination "$DistDir\install.ps1"
+          Copy-Item "installer\uninstall.ps1" -Destination "$DistDir\uninstall.ps1"
+          Copy-Item "README.md" -Destination "$DistDir\README.md"
+          Copy-Item "LICENSE" -Destination "$DistDir\LICENSE"
+          
+          Compress-Archive -Path "$DistDir\*" -DestinationPath "dist\BetterFolderSize-$Version-windows-x64.zip" -Force
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.zip
+            target/release/better-folder-size.exe
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

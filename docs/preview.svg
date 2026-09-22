@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 300" width="100%" height="100%">
+  <defs>
+    <filter id="winShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Dark Background Canvas -->
+  <rect width="540" height="300" rx="10" fill="#0d1117" />
+  
+  <!-- Actual Windows 11 Window Replica -->
+  <g transform="translate(45, 35)" filter="url(#winShadow)">
+    <!-- Window Body (Windows 11 Light Window Background) -->
+    <rect width="450" height="230" rx="8" fill="#fcfcfc" stroke="#d4d4d8" stroke-width="1" />
+    
+    <!-- Titlebar Area -->
+    <path d="M 0 8 Q 0 0 8 0 L 442 0 Q 450 0 450 8 L 450 34 L 0 34 Z" fill="#f3f4f6" />
+    <line x1="0" y1="34" x2="450" y2="34" stroke="#e4e4e7" stroke-width="1" />
+
+    <!-- Window Icon & Title -->
+    <text x="16" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#27272a">Folder Size (Better)</text>
+
+    <!-- Native Windows 11 Close button -->
+    <g transform="translate(422, 12)">
+      <line x1="0" y1="0" x2="9" y2="9" stroke="#52525b" stroke-width="1.2" stroke-linecap="round" />
+      <line x1="9" y1="0" x2="0" y2="9" stroke="#52525b" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <!-- Header: Folder Name & Path -->
+    <text x="20" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#18181b">Folder: Project</text>
+    <text x="20" y="82" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#52525b">C:\Projects\Project</text>
+
+    <!-- Hero Result Size (Realistic bold black text matching Win32 GDI Segoe UI) -->
+    <text x="20" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#09090b">1.24 GB <tspan font-size="15" font-weight="500" fill="#52525b">(1 331 439 812 B)</tspan></text>
+
+    <!-- Details: Files & Folders -->
+    <text x="20" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#3f3f46">Files: 18,688    •    Folders: 3,705</text>
+
+    <!-- Windows Native Buttons -->
+    <!-- Copy Button -->
+    <rect x="20" y="174" width="96" height="32" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="54" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#18181b">Copy</text>
+
+    <!-- Copied text confirmation -->
+    <text x="130" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#16a34a">✓ Copied!</text>
+
+    <!-- Close Button (Windows 11 Native Button Style) -->
+    <rect x="334" y="174" width="96" height="32" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="368" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#18181b">Close</text>
+  </g>
+</svg>

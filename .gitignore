@@ -1,0 +1,7 @@
+/target
+/dist
+**/*.rs.bk
+*.pdb
+.idea/
+.vscode/
+upload_to_github.bat
